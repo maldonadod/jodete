@@ -1,5 +1,4 @@
 const AssertTruth = (a) => expect(a).toBeTruthy()
-const AssertFalsy = (a) => expect(a).toBeFalsy()
 
 const Baraja = require('../Domain/Baraja')
 const Jugador = require('../Domain/Jugador')
@@ -15,7 +14,7 @@ describe('Jodete', () => {
         beforeEach(() => {
             baraja = Baraja()
             pepe = Jugador('pepe')
-            pozo = baraja.desvelaPozo()
+            pozo = baraja.pozo()
             
             pepe.roba(baraja)
             pepe.roba(baraja)

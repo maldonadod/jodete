@@ -1,8 +1,9 @@
 const Oro = require('./Oro')
 const Pozo = require('./Pozo')
+const TotalCartas = require('./TotalCartas')
 
 module.exports = () => {
-    const cartas = [1, 2, 3, 4, 5, 6].map(index => Oro(index))
+    const cartas = [...Array(52)].map((_, index) => Oro(index + 1))
     return {
         cartaCima() {
             const carta = cartas.shift()
@@ -11,8 +12,11 @@ module.exports = () => {
             }
             return carta
         },
-        desvelaPozo() {
+        pozo() {
             return Pozo(this.cartaCima())
+        },
+        totalCartas() {
+            return TotalCartas(cartas.length)
         }
     }
 }
