@@ -12,8 +12,8 @@ module.exports = () => {
             }
             return carta
         },
-        pozo() {
-            return Pozo(this.cartaCima())
+        iniciarPozo(pozo) {
+            return pozo.nuevo(this.cartaCima())
         },
         totalCartas() {
             return TotalCartas(cartas.length)
