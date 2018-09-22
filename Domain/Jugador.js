@@ -4,19 +4,16 @@ module.exports = name => {
     let mano = []
     return {
         name,
-        levanta(carta) {
-            mano.push(carta)
+        roba(baraja) {
+            mano.push(baraja.cartaCima())
         },
-        tira(carta, pozo, partida) {
+        descarta(carta, pozo) {
             pozo.recibe(carta)
             mano = mano.filter(c => !c.equals(carta))
             return this
         },
         totalCartas() {
             return TotalCartas(mano.length)
-        },
-        sinCartas() {
-            return this.totalCartas().equals(TotalCartas(0))
         }
     }
 }
