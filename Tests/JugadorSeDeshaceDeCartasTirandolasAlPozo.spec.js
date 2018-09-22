@@ -25,7 +25,7 @@ describe('Jodete', () => {
             pepe.roba(baraja)
             pepe.roba(baraja)
 
-            partida.juega(pepe, Oro(2))
+            pepe.juega(Oro(2), partida)
         })
 
         it('Pepe se queda con una Carta', () => {

@@ -1,14 +1,14 @@
 const AssertTruth = (a) => expect(a).toBeTruthy()
 const AssertEquals = (a, b) => expect(a).toEqual(b)
 
-const Jugador = require('../../Domain/Jugador')
-const StubBaraja = require('../Stubs/Baraja')
-const Mano = require('../../Domain/Mano')
-const Copa = require('../../Domain/Copa')
-const Oro = require('../../Domain/Oro')
-const TotalCartas = require('../../Domain/TotalCartas')
+const Jugador = require('../Domain/Jugador')
+const StubBaraja = require('./Stubs/Baraja')
+const Mano = require('../Domain/Mano')
+const Copa = require('../Domain/Copa')
+const Oro = require('../Domain/Oro')
+const TotalCartas = require('../Domain/TotalCartas')
 
-const Partida = require('../../Domain/Partida')
+const Partida = require('../Domain/Partida')
 
 describe('Jugador es penalizado a levantar una carta por tirar carta invalida en el pozo', () => {
 
@@ -24,7 +24,7 @@ describe('Jugador es penalizado a levantar una carta por tirar carta invalida en
 
         pepe.roba(baraja)
 
-        partida.juega(pepe, Oro(2))
+        pepe.juega(Oro(2), partida)
     })
 
     it('Pepe termina levantando la el 2 de oro y con 1 carta más', () => {

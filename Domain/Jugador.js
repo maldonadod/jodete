@@ -12,6 +12,9 @@ module.exports = ({name, mano}) => {
         roba(baraja) {
             mano.cartas.push(baraja.cartaCima())
         },
+        juega(carta, partida) {
+            partida.juega(this, carta)
+        },
         descarta(carta, pozo) {
             mano.cartas = mano.cartas.filter(c => c.equals(carta))
             pozo.recibe(carta)
