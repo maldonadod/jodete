@@ -1,20 +1,21 @@
 const AssertTruth = (a) => expect(a).toBeTruthy()
 
-const Baraja = require('../Domain/Baraja')
+const StubBaraja = require('./Stub_Implementations/Baraja')
 const Jugador = require('../Domain/Jugador')
+const Pozo = require('../Domain/Pozo')
 const Oro = require('../Domain/Oro')
 const TotalCartas = require('../Domain/TotalCartas')
 
 describe('Jodete', () => {
 
-    describe('Pepe roba 2 cartas del mazo, luego descarta el 2 de Oro', () => {
+    describe('Pepe roba 2 carta del mazo y una descarta al pozo (2 de Oro)', () => {
         
-        let baraja, pepe, pozo;
+        let baraja, pepe, pozo
 
         beforeEach(() => {
-            baraja = Baraja()
+            baraja = StubBaraja(Oro(1), Oro(12), Oro(2))
             pepe = Jugador('pepe')
-            pozo = baraja.pozo()
+            pozo = baraja.iniciarPozo(Pozo())
             
             pepe.roba(baraja)
             pepe.roba(baraja)
