@@ -3,7 +3,7 @@ const AssertTruth = (a) => expect(a).toBeTruthy()
 const StubBaraja = require('./Stubs/Baraja')
 const Jugador = require('../Domain/Jugador')
 const Partida = require('../Domain/Partida')
-const Pozo = require('../Domain/Pozo')
+const Mano = require('../Domain/Mano')
 const Oro = require('../Domain/Oro')
 const TotalCartas = require('../Domain/TotalCartas')
 
@@ -15,7 +15,10 @@ describe('Jodete', () => {
 
         beforeEach(() => {
             baraja = StubBaraja(Oro(1), Oro(12), Oro(2))
-            pepe = Jugador('pepe')
+            pepe = Jugador({
+                mano: Mano(),
+                name: 'pepe'
+            })
 
             partida = Partida(baraja)
             

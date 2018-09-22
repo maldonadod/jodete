@@ -1,5 +1,6 @@
 const AssertTruth = (a) => expect(a).toBeTruthy()
 const Baraja = require('../Domain/Baraja')
+const Mano = require('../Domain/Mano')
 const Pozo = require('../Domain/Pozo')
 const Jugador = require('../Domain/Jugador')
 const TotalCartas = require('../Domain/TotalCartas')
@@ -13,8 +14,14 @@ describe('Inicia la partida', () => {
         beforeEach(() => {
             baraja = Baraja()
             pozo = baraja.iniciarPozo(Pozo())
-            pepe = Jugador('pepe')
-            juan = Jugador('juan')
+            pepe = Jugador({
+                name:'pepe',
+                mano: Mano()
+            })
+            juan = Jugador({
+                name:'juan',
+                mano: Mano()
+            })
 
             pepe.roba(baraja)
             juan.roba(baraja)

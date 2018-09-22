@@ -1,7 +1,6 @@
 const Pozo = require('../Domain/Pozo')
 
-const Penalizar = (jugador, carta, baraja) => {
-    jugador.levanta(carta)
+const PenalizarLevantaOtra = (jugador, baraja) => {
     jugador.roba(baraja)
 }
 
@@ -20,7 +19,7 @@ module.exports = baraja => {
 
             carta.validaSobre(pozo.ultimaCarta()) 
             ? jugador.descarta(carta, pozo)
-            : Penalizar(jugador, carta, baraja)
+            : PenalizarLevantaOtra(jugador, baraja)
         }
     }
 }
