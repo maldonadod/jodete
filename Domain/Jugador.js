@@ -1,19 +1,27 @@
 const TotalCartas = require('./TotalCartas')
 
-module.exports = name => {
-    let mano = []
+module.exports = ({name, mano}) => {
     return {
         name,
+        manoEquals(otraMano) {
+            return mano.equals(otraMano)
+        },
+        levanta(carta) {
+            mano.cartas.push(carta)
+        },
         roba(baraja) {
-            mano.push(baraja.cartaCima())
+            mano.cartas.push(baraja.cartaCima())
+        },
+        juega(carta, partida) {
+            partida.juega(this, carta)
         },
         descarta(carta, pozo) {
+            mano.cartas = mano.cartas.filter(c => c.equals(carta))
             pozo.recibe(carta)
-            mano = mano.filter(c => !c.equals(carta))
             return this
         },
         totalCartas() {
-            return TotalCartas(mano.length)
+            return TotalCartas(mano.cartas.length)
         }
     }
 }
