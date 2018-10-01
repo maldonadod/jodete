@@ -7,7 +7,7 @@ const PenalizarLevantaOtra = (jugador, baraja) => {
 
 const MovimiendoValido = (jugador, carta, pozo, partida) => {
     jugador.descarta(carta, pozo)
-    partida.siguienteJugadorLevanta(jugador, TotalCartas(2))
+    carta.activarEfecto(partida, jugador)
 }
 
 module.exports = (baraja, ...jugadores) => {
@@ -26,10 +26,15 @@ module.exports = (baraja, ...jugadores) => {
             return pozo.totalCartas()
         },
         juega(jugador, carta) {
-
             carta.validaSobre(pozo.ultimaCarta())//comunicacion supone que pozo tiene una ultima carta
             ? MovimiendoValido(jugador, carta, pozo, this)
             : PenalizarLevantaOtra(jugador, baraja)
+            if (jugador.totalCartas().equals(TotalCartas(0))) {
+                this.ganador = jugador
+            }
+        },
+        ganadorEs(supuestoGanador) {
+            return this.ganador === supuestoGanador
         }
     }
 }
