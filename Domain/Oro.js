@@ -7,6 +7,9 @@ module.exports = index => {
         },
         validaSobre(carta) {
             return carta.index === index || carta.palo === "oro"
+        },
+        signature() {
+            return `${index}${this.palo}`
         }
     }
 }
