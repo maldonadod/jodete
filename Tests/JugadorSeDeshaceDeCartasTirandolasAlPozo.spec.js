@@ -7,17 +7,21 @@ const Mano = require('../Domain/Mano')
 const Oro = require('../Domain/Oro')
 const TotalCartas = require('../Domain/TotalCartas')
 
-describe('Jodete', () => {
+const Descripcion = (a, b) => describe(a, b)
+const Inicio = (a) => beforeEach(a)
+const Debe = (a, b) => it(a, b)
 
-    describe('Pepe roba 2 carta del mazo y una descarta al pozo (2 de Oro)', () => {
+Descripcion('Jodete', () => {
+
+    Descripcion('Pepe roba 2 carta del mazo y una descarta al pozo (2 de Oro)', () => {
         
         let baraja, pepe, partida
 
-        beforeEach(() => {
-            const cartas_pepe = [Oro(2), Oro(3)]
-            const cartas_juan = [Oro(4), Oro(5)]
+        Inicio(() => {
 
-            const baraja = StubBaraja(Oro(1), ...cartas_pepe, ...cartas_juan, Oro(6), Oro(7))
+            baraja = StubBaraja(
+                Oro(1), Oro(2), Oro(3), Oro(4), Oro(5), Oro(6), Oro(7)
+            )
             pepe = Jugador({
                 mano: Mano(),
                 name: 'pepe'
@@ -36,33 +40,28 @@ describe('Jodete', () => {
             pepe.juega(Oro(2), partida)
         })
 
-        it('La mano actual de Pepe es', () => {
+        Debe('La mano actual de Pepe es: Oro(3)', () => {
             AssertTruth(pepe.manoEquals(
                 Mano(
                     Oro(3)
                 )
             ))
         })
-        it('La mano actual de Juan es', () => {
+        Debe('La mano actual de Juan es: Oro(4), Oro(5), Oro(6), Oro(7)', () => {
             AssertTruth(juan.manoEquals(
                 Mano(
                     Oro(4), Oro(5), Oro(6), Oro(7)
                 )
             ))
         })
-        it('La cara pozo es el 2 de Oro', () => {
+        Debe('Cara del pozo es: Oro 2', () => {
             AssertTruth(partida.caraDelPozo().equals(
                 Oro(2)
             ))
         })
-        it('El pozo en total contiene 2 cartas', () => {
+        Debe('Cartas total del pozo: 2', () => {
             AssertTruth(partida.totalCartasEnPozo().equals(
                 TotalCartas(2)
-            ))
-        })
-        it('Juan levanto 2 (A causa del 2 de oro tirado por pepe)', () => {
-            AssertTruth(juan.totalCartas().equals(
-                TotalCartas(4)
             ))
         })
     })
