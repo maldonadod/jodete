@@ -31,6 +31,10 @@ describe('Jugador es penalizado a levantar una carta por tirar carta invalida en
         AssertTruth(pepe.totalCartas().equals(TotalCartas(2)))
     })
     it('Al final en su mano quedan el 2 de Oro y 3 de Oro', () => {
-        AssertTruth(pepe.manoEquals(Mano(Oro(2), Oro(3))))
+        AssertTruth(
+            pepe.manoEquals(
+                Mano(Oro(2), Oro(3))
+            )
+        )
     })
 })
